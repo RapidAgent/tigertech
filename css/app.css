@@ -1,0 +1,32 @@
+/*
+Pomidoro App
+app.css
+
+created by @sauliuz
+PopularOwl Labs // www.popularowl.com
+For tutorial on www.htmlcenter.com
+*/
+
+
+.slider {
+  margin-bottom: 0;
+  height: 150px;
+}
+
+.slider li img {
+  width: 100%;
+}
+
+.form-wrapper {
+  padding: 10px;
+}
+
+
+.demoimg {
+  width: 48px;
+  height: 36px;
+}
+
+.tab-item{
+    background-color: #ff7400;
+}
