@@ -62,10 +62,10 @@ pennant.factory('categoriesFactory', function(){
 pennant.factory('articlesFactory', function(){
 	// Squarespace URL example: https://pennant.squarespace.com/?format=json&category=Health
     var articles = [
-        {name:'Article 1', image:'', advertisement:'', fullUrl=''},
-        {name:'Article 2', image:'', advertisement:'', fullUrl=''},
-        {name:'Article 3', image:'', advertisement:'', fullUrl=''},
-        {name:'Article 4', image:'', advertisement:'', fullUrl=''}
+        {name:'Article 1', image:'', advertisement:'', fullUrl:''},
+        {name:'Article 2', image:'', advertisement:'', fullUrl:''},
+        {name:'Article 3', image:'', advertisement:'', fullUrl:''},
+        {name:'Article 4', image:'', advertisement:'', fullUrl:''}
     ];
     var factory = {};
     factory.getArticles = function()
