@@ -37,6 +37,7 @@ pennant.controller('ArticlesController', function($scope, $http, $routeParams, a
         $http.jsonp(url)
             .success(function(data, status, headers, config) {
                 $scope.articles = articlesFactory.getArticles(data);
+
             }).
             error(function(data, status, headers, config) {
                 $scope.articles = [];
@@ -58,7 +59,8 @@ pennant.controller('ArticleController', function($scope, $routeParams, articleFa
 
 pennant.factory('categoriesFactory', function($http){
     var categories = [
-        {id:1, name:'Front Page', image:'featured.png', advertisement:''},
+        {id:1, name:'Editorials', image:'featured.png', advertisement:''},
+        // ToDo: Figure out what the article names are
         {id:2, name:'About', image:'about.png', advertisement:''},
         {id:3, name:'Sports', image:'sports.png', advertisement:''},
         {id:4, name:'Arts', image:'art.png', advertisement:''},
@@ -73,15 +75,23 @@ pennant.factory('categoriesFactory', function($http){
 });
 
 pennant.factory('articlesFactory', function(){
-    var articles = [
-        {name:'Article 1', image:'', advertisement:'', fullUrl:''},
-        {name:'Article 2', image:'', advertisement:'', fullUrl:''},
-        {name:'Article 3', image:'', advertisement:'', fullUrl:''},
-        {name:'Article 4', image:'', advertisement:'', fullUrl:''}
-    ];
+    var articles = [];
+        //= [
+        //{name:'Article 1', image:'', advertisement:'', fullUrl:''},
+        //{name:'Article 2', image:'', advertisement:'', fullUrl:''},
+        //{name:'Article 3', image:'', advertisement:'', fullUrl:''},
+        //{name:'Article 4', image:'', advertisement:'', fullUrl:''}
+        //];
     var factory = {};
     factory.getArticles = function(articlesJson)
     {
+        console.log('WHAT DOES THIS SAY2 >>>>> ' + articlesJson['items']);
+        for(var x=0; x<articlesJson.items.length; x++)
+        {
+            articles[x] = articlesJson.items[x];
+            console.log(articles[x]);
+        }
+
         articles[0].name = articlesJson;
         return articles;
     };

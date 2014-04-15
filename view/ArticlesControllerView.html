@@ -24,9 +24,9 @@
       <li class="list-divider">Articles</li>
       <li data-ng-repeat="article in articles">
         <a href="#/articles">
-          <div><img class="demoimg" src="img/{{article.image}}"></div>
-          <strong>{{article.name}}</strong><br />
-          <p>{{article.image}}</p>
+          <div><img class="demoimg" src="{{article.assetUrl}}"></div>
+          <strong>{{article.title}}</strong><br />
+          <p>{{article.fullUrl}}</p>
         </a>
       </li>
     </ul>
