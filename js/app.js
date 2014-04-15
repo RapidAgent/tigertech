@@ -15,7 +15,7 @@ pennant.config(function ($routeProvider) {
 
 ///////// CONTROLERS ////////////////////////////
 
-pennant.controller('CategoryController', function($scope,categoriesFactory)
+pennant.controller('CategoryController', function($scope, categoriesFactory)
 {
     $scope.categories = [];
 	init();
@@ -23,13 +23,25 @@ pennant.controller('CategoryController', function($scope,categoriesFactory)
     { $scope.categories = categoriesFactory.getCategories(); }	
 });
 
-pennant.controller('ArticlesController', function($scope, $routeParams, articlesFactory)
+pennant.controller('ArticlesController', function($scope, $http, $routeParams, articlesFactory)
 {
 	console.log('Category ID: ' + $routeParams.category);
     $scope.articles = [];
 	init();
 	function init()
-    { $scope.articles = articlesFactory.getArticles(); }	
+    {
+        // TODO: Talk with Tiger Tech about this piece of gold.
+        console.log('URL parameter passed: ' + $routeParams.category);
+
+        var url = 'https://pennant.squarespace.com/articles/?callback=JSON_CALLBACK&format=json&category=' + $routeParams.category;
+        $http.jsonp(url)
+            .success(function(data, status, headers, config) {
+                $scope.articles = articlesFactory.getArticles(data);
+            }).
+            error(function(data, status, headers, config) {
+                $scope.articles = [];
+            });
+    }
 });
 
 pennant.controller('ArticleController', function($scope, $routeParams, articleFactory)
@@ -44,7 +56,7 @@ pennant.controller('ArticleController', function($scope, $routeParams, articleFa
     
 ///////////// FACTORIES ////////////////////////////
 
-pennant.factory('categoriesFactory', function(){
+pennant.factory('categoriesFactory', function($http){
     var categories = [
         {id:1, name:'Front Page', image:'featured.png', advertisement:''},
         {id:2, name:'About', image:'about.png', advertisement:''},
@@ -56,12 +68,11 @@ pennant.factory('categoriesFactory', function(){
     factory.getCategories = function()
     {
         return categories; //This is where we well API call out to Squarespace
-    }
+    };
     return factory;
 });
 
 pennant.factory('articlesFactory', function(){
-	// Squarespace URL example: https://pennant.squarespace.com/?format=json&category=Health
     var articles = [
         {name:'Article 1', image:'', advertisement:'', fullUrl:''},
         {name:'Article 2', image:'', advertisement:'', fullUrl:''},
@@ -69,21 +80,21 @@ pennant.factory('articlesFactory', function(){
         {name:'Article 4', image:'', advertisement:'', fullUrl:''}
     ];
     var factory = {};
-    factory.getArticles = function()
+    factory.getArticles = function(articlesJson)
     {
-        return articles; //This is where we well API call out to Squarespace
-    }
+        articles[0].name = articlesJson;
+        return articles;
+    };
     return factory;
 });
 
 pennant.factory('articleFactory', function(){
-	//https://pennant.squarespace.com/articles/2014/2/3/tiger-pride-of-instagram?format=json
 	var article = {'id':'234', 'author':'John Doe'};
     var factory = {};
     factory.getArticle = function()
     {
         return article; //This is where we well API call out to Squarespace
-    }
+    };
     return factory;
 });
     
