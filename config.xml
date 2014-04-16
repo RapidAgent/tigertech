@@ -14,7 +14,7 @@
     <author href="https://www.tiger-tech.org" email="support@tiger-tech.org">
         Tiger Tech
     </author>
-    <icon src="icon.png" />
+    <icon src="icon.png"  width="88" height="88"/>
 
     <!-- iPhone / iPod Touch  iOS 7 -->
     <icon src="icon-60.png" gap:platform="ios" width="60" height="60" />
@@ -39,5 +39,5 @@
     <icon src="xxhdpi.png" gap:platform="android" gap:qualifier="xxhdpi" />
 
     <gap:splash src="splash.png" />
-    <access origin="*" subdomains="true" width="88" height="88"/>
+    <access origin="*" subdomains="true"/>
 </widget>
