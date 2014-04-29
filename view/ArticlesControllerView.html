@@ -23,10 +23,10 @@
     <ul class="list">
       <li class="list-divider">Articles</li>
       <li data-ng-repeat="article in articles">
-        <a href="#/articles">
+        <a href="{{article.fullUrl}}">
           <div><img class="demoimg" src="{{article.assetUrl}}"></div>
           <strong>{{article.title}}</strong><br />
-          <p>{{article.fullUrl}}</p>
+          <p></p>
         </a>
       </li>
     </ul>

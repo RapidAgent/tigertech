@@ -49,7 +49,20 @@ pennant.controller('ArticleController', function($scope, $routeParams, articleFa
 {
 	console.log('Category ID: ' + $routeParams.category);
 	console.log('Article ID: ' + $routeParams.article);
+    console.log($routeParams);
     $scope.article = {};
+
+    var url = 'https://pennant.squarespace.com/' + $routeParams.articleUri + '?callback=JSON_CALLBACK&format=json';
+    $http.jsonp(url)
+        .success(function(data, status, headers, config) {
+            console.log(data);
+            $scope.articles = articlesFactory.getArticles(data);
+
+        }).
+        error(function(data, status, headers, config) {
+            $scope.articles = [];
+        });
+
 	init();
 	function init()
     { $scope.articles = articlesFactory.getArticle(); }	
@@ -58,13 +71,14 @@ pennant.controller('ArticleController', function($scope, $routeParams, articleFa
 ///////////// FACTORIES ////////////////////////////
 
 pennant.factory('categoriesFactory', function($http){
+    //ToDo: Match Articles with categories in Squarespace
     var categories = [
-        {id:1, name:'Editorials', image:'featured.png', advertisement:''},
+        {id:1, name:"Editorials", image:'featured.png', advertisement:''},
         // ToDo: Figure out what the article names are
-        {id:2, name:'About', image:'about.png', advertisement:''},
-        {id:3, name:'Sports', image:'sports.png', advertisement:''},
-        {id:4, name:'Arts', image:'art.png', advertisement:''},
-        {id:5, name:'Health and Beauty', image:'health_beauty.png', advertisement:''}
+        {id:2, name:"About", image:'about.png', advertisement:''},
+        {id:3, name:"Sports", image:'sports.png', advertisement:''},
+        {id:4, name:"Arts", image:'art.png', advertisement:''},
+        {id:5, name:"Health and Beauty", image:'health_beauty.png', advertisement:''}
     ];
     var factory = {};
     factory.getCategories = function()
@@ -76,16 +90,9 @@ pennant.factory('categoriesFactory', function($http){
 
 pennant.factory('articlesFactory', function(){
     var articles = [];
-        //= [
-        //{name:'Article 1', image:'', advertisement:'', fullUrl:''},
-        //{name:'Article 2', image:'', advertisement:'', fullUrl:''},
-        //{name:'Article 3', image:'', advertisement:'', fullUrl:''},
-        //{name:'Article 4', image:'', advertisement:'', fullUrl:''}
-        //];
     var factory = {};
     factory.getArticles = function(articlesJson)
     {
-        console.log('WHAT DOES THIS SAY2 >>>>> ' + articlesJson['items']);
         for(var x=0; x<articlesJson.items.length; x++)
         {
             articles[x] = articlesJson.items[x];
@@ -101,10 +108,9 @@ pennant.factory('articlesFactory', function(){
 pennant.factory('articleFactory', function(){
 	var article = {'id':'234', 'author':'John Doe'};
     var factory = {};
-    factory.getArticle = function()
+    factory.getArticle = function(articleUri)
     {
         return article; //This is where we well API call out to Squarespace
     };
     return factory;
 });
-    
