@@ -7,9 +7,8 @@
     <ul class="list">
         <li data-ng-repeat="article in articles">
             <a href="#{{article.fullUrl}}">
-                <div><img class="demoimg" src="{{article.assetUrl}}"></div>
-                <strong>{{article.title}}</strong><br />
-                <p></p>
+                <div><img class="list_image" src="{{article.assetUrl}}"></div>
+                <p class="article-title">{{article.title}}</p>
             </a>
         </li>
     </ul>

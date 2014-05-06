@@ -1,3 +1,11 @@
+@media screen and (device-height: 568px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    body{
+        width:100%;
+        height:100%;
+    }
+}
+
+
 .slider {
   margin-bottom: 0;
   height: 150px;
@@ -12,11 +20,15 @@
 }
 
 
-.demoimg {
+.list_image {
   width: 48px;
   height: 36px;
 }
 
-.tab-item{
+.tab-item {
     background-color: #ff7400;
+}
+
+.article-title {
+
 }
