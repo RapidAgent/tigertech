@@ -9,9 +9,8 @@
         <li data-ng-repeat="category in categories">
             <a href="#/categories/{{category.name}}/articles">
                 <div><img class="list_image" src="img/{{category.image}}"></div>
-                <strong>{{category.name}}</strong><br />
-                <p>{{category.image}}</p>
-                <p>{{category.id}}</p>
+                <p  class="category-title"><strong>{{category.name}}</strong></p>
+
             </a>
         </li>
     </ul>

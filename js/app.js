@@ -72,11 +72,11 @@ pennant.controller('ArticleController', function($scope, $http, $routeParams, ar
 pennant.factory('categoriesFactory', function($http){
     var categories = [
         {id:1, name:"Editorials", image:'featured.png', advertisement:''},
-        // ToDo: Figure out what the article names are
-        {id:2, name:"About", image:'about.png', advertisement:''},
-        {id:3, name:"Sports", image:'sports.png', advertisement:''},
-        {id:4, name:"Arts", image:'art.png', advertisement:''},
-        {id:5, name:"Health and Beauty", image:'health_beauty.png', advertisement:''}
+        {id:2, name:"Government", image:'government.png', advertisement:''},
+        {id:3, name:"About", image:'about.png', advertisement:''},
+        {id:4, name:"Sports", image:'sports.png', advertisement:''},
+        {id:5, name:"Arts", image:'art.png', advertisement:''},
+        {id:6, name:"Health and Beauty", image:'health_beauty.png', advertisement:''}
     ];
     var factory = {};
     factory.getCategories = function()

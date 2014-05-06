@@ -30,5 +30,33 @@
 }
 
 .article-title {
+    font-size: 17px;
 
+}
+
+
+.category-title
+{
+    color: #000000;
+    font-size: 20px;
+}
+
+.bar-title .title
+{
+    background-color: rgb(213, 138, 0);
+    /* font-family: ; */
+    color: #b16400;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-size: 30px;
+}
+
+.list
+{
+    background-color: #ffcc8a;
+}
+
+.bar-title [class*="button"] {
+background-image: -webkit-linear-gradient(top, #ffcc8a 0, #ffcc8a 100%);
+    box-shadow: none;
+    color: black;
 }
