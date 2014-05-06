@@ -9,7 +9,7 @@ pennant.config(function ($routeProvider) {
 	$routeProvider
 		.when('/categories', { controller: 'CategoryController', templateUrl: 'view/CategoryControllerView.html'})
 		.when('/categories/:category/articles', { controller: 'ArticlesController', templateUrl: 'view/ArticlesControllerView.html'})
-		.when('/categories/:category/articles/:article', {controller: 'ArticleController', templateUrl: 'view/ArticleControllerView.html'})
+        .when('/articles/:year/:month/:day/:title', {controller: 'ArticleController', templateUrl: 'view/ArticleControllerView.html'})
 		.otherwise( {redirectTo: '/categories'} ); 
 });		
 
@@ -30,7 +30,6 @@ pennant.controller('ArticlesController', function($scope, $http, $routeParams, a
 	init();
 	function init()
     {
-        // TODO: Talk with Tiger Tech about this piece of gold.
         console.log('URL parameter passed: ' + $routeParams.category);
 
         var url = 'https://pennant.squarespace.com/articles/?callback=JSON_CALLBACK&format=json&category=' + $routeParams.category;
@@ -45,27 +44,31 @@ pennant.controller('ArticlesController', function($scope, $http, $routeParams, a
     }
 });
 
-pennant.controller('ArticleController', function($scope, $routeParams, articleFactory)
+pennant.controller('ArticleController', function($scope, $http, $routeParams, articleFactory)
 {
+    console.log('in article controller!');
 	console.log('Category ID: ' + $routeParams.category);
 	console.log('Article ID: ' + $routeParams.article);
     console.log($routeParams);
     $scope.article = {};
 
-    var url = 'https://pennant.squarespace.com/' + $routeParams.articleUri + '?callback=JSON_CALLBACK&format=json';
+    var url = 'https://pennant.squarespace.com/' + $routeParams.year + '/' +
+                                                   $routeParams.month + '/' +
+                                                   $routeParams.day + '/' +
+                                                   $routeParams.title + '?callback=JSON_CALLBACK&format=json';
     $http.jsonp(url)
         .success(function(data, status, headers, config) {
             console.log(data);
-            $scope.articles = articlesFactory.getArticles(data);
+            $scope.article = articleFactory.getArticle(data);
 
         }).
         error(function(data, status, headers, config) {
-            $scope.articles = [];
+            $scope.article = [];
         });
 
 	init();
 	function init()
-    { $scope.articles = articlesFactory.getArticle(); }	
+    { $scope.article = articleFactory.getArticle(); }
 });
     
 ///////////// FACTORIES ////////////////////////////
@@ -106,11 +109,11 @@ pennant.factory('articlesFactory', function(){
 });
 
 pennant.factory('articleFactory', function(){
-	var article = {'id':'234', 'author':'John Doe'};
+	var article;
     var factory = {};
-    factory.getArticle = function(articleUri)
+    factory.getArticle = function(articleJson)
     {
-        return article; //This is where we well API call out to Squarespace
+        return article
     };
     return factory;
 });
