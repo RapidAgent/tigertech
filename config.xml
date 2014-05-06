@@ -24,6 +24,15 @@
     <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
         <false/>
     </gap:config-file>
+    <gap:splash src="splash.png" />
+    <gap:splash src="splash/ios/Default-568h@2x~iphone.png"  gap:platform="ios" width="640"  height="1136"  />
+    <gap:splash src="splash/ios/Default.png"                 gap:platform="ios" width="320"  height="480"  />
+    <gap:splash src="splash/ios/Default_at_2x.png"           gap:platform="ios" width="640"  height="960"  />
+    <gap:splash src="splash/ios/Default_iphone5.png"         gap:platform="ios" width="640"  height="1136" />
+    <gap:splash src="splash/ios/Default-Portrait.png"        gap:platform="ios" width="768"  height="1004" />
+    <!-- retina iPad -->
+    <gap:splash src="splash/ios/Default-Portrait_at_2x.png"  gap:platform="ios" width="1536" height="2008" />
+
 
     <preference name="phonegap-version" value="3.4.0" />
     <preference name="orientation" value="portrait" />
