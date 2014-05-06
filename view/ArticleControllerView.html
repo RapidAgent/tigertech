@@ -5,12 +5,9 @@
 
 <div class="content">
     <ul class="list">
-        <li data-ng-repeat="article in articles">
-            <a href="#{{article.fullUrl}}">
-                <div><img class="article_img" src="{{article.assetUrl}}"></div>
-                <strong>{{article.title}}</strong><br />
-                <p></p>
-            </a>
-        </li>
+        <div><img class="article_img" src="{{article.assetUrl}}"></div>
+        <p class="article-title">{{article.title}}</strong></p>
+        <p class="author-name">{{article.author.displayName}}</p>
+        <span ng-bind-html-unsafe="article.body"></span>
     </ul>
 </div>

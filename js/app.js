@@ -65,16 +65,11 @@ pennant.controller('ArticleController', function($scope, $http, $routeParams, ar
         error(function(data, status, headers, config) {
             $scope.article = [];
         });
-
-	init();
-	function init()
-    { $scope.article = articleFactory.getArticle(); }
 });
     
 ///////////// FACTORIES ////////////////////////////
 
 pennant.factory('categoriesFactory', function($http){
-    //ToDo: Match Articles with categories in Squarespace
     var categories = [
         {id:1, name:"Editorials", image:'featured.png', advertisement:''},
         // ToDo: Figure out what the article names are
@@ -113,6 +108,9 @@ pennant.factory('articleFactory', function(){
     var factory = {};
     factory.getArticle = function(articleJson)
     {
+        console.log('here is my article!');
+        article = articleJson.item;
+        console.log(article);
         return article
     };
     return factory;
