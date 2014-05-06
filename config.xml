@@ -26,10 +26,8 @@
         <false/>
     </gap:config-file>
 
-    <preference name="DisallowOverscroll" value="false" />
     <preference name="phonegap-version" value="3.4.0" />
     <preference name="orientation" value="portrait" />
-    <preference name="fullscreen" value="true" />
 
     <access origin="*" subdomains="true"/>
 </widget>
