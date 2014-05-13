@@ -5,8 +5,10 @@
 
 <div class="content">
     <div>
-        <p class="article-title">{{article.title}}</strong></p>
+        <p class="article-heading">{{article.title}}</strong></p>
         <p class="author-name">{{article.author.displayName}}</p>
+        <p class="article-date">{{date}}</p>
+        <hr>
         <span ng-bind-html-unsafe="article.body"></span>
     </div>
 </div>

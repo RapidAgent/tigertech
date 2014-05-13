@@ -7,6 +7,16 @@
 
 .content {
     background-color: #ffcc8a;
+    padding: 40px;
+}
+
+hr{
+    color:black;
+    border-color:black;
+}
+
+.author-name{
+    text-align:center;
 }
 
 .slider {
@@ -37,6 +47,14 @@
 
 }
 
+.article-heading {
+    font-size: 17px;
+    text-align: center;
+}
+
+.article-date{
+    text-align: center;
+}
 
 .category-title
 {

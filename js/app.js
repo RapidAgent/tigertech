@@ -57,6 +57,7 @@ pennant.controller('ArticleController', function($scope, $http, $routeParams, ar
         .success(function(data, status, headers, config) {
             $scope.article = articleFactory.getArticle(data);
             $scope.category = $routeParams.category;
+            $scope.date =  $routeParams.month + '/' + $routeParams.day + '/' + $routeParams.year
 
         }).
         error(function(data, status, headers, config) {
