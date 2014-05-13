@@ -9,7 +9,8 @@ pennant.config(function ($routeProvider) {
 	$routeProvider
 		.when('/categories', { controller: 'CategoryController', templateUrl: 'view/CategoryControllerView.html'})
 		.when('/categories/:category/articles', { controller: 'ArticlesController', templateUrl: 'view/ArticlesControllerView.html'})
-        .when('/articles/:year/:month/:day/:title', {controller: 'ArticleController', templateUrl: 'view/ArticleControllerView.html'})
+        .when('/categories/:category/articles/:year/:month/:day/:title',
+            {controller: 'ArticleController', templateUrl: 'view/ArticleControllerView.html'})
 		.otherwise( {redirectTo: '/categories'} ); 
 });		
 
@@ -36,7 +37,7 @@ pennant.controller('ArticlesController', function($scope, $http, $routeParams, a
         $http.jsonp(url)
             .success(function(data, status, headers, config) {
                 $scope.articles = articlesFactory.getArticles(data);
-
+                $scope.category = $routeParams.category;
             }).
             error(function(data, status, headers, config) {
                 $scope.articles = [];
@@ -46,10 +47,6 @@ pennant.controller('ArticlesController', function($scope, $http, $routeParams, a
 
 pennant.controller('ArticleController', function($scope, $http, $routeParams, articleFactory)
 {
-    console.log('in article controller!');
-	console.log('Category ID: ' + $routeParams.category);
-	console.log('Article ID: ' + $routeParams.article);
-    console.log($routeParams);
     $scope.article = {};
 
     var url = 'https://pennant.squarespace.com/' + $routeParams.year + '/' +
@@ -58,8 +55,8 @@ pennant.controller('ArticleController', function($scope, $http, $routeParams, ar
                                                    $routeParams.title + '?callback=JSON_CALLBACK&format=json';
     $http.jsonp(url)
         .success(function(data, status, headers, config) {
-            console.log(data);
             $scope.article = articleFactory.getArticle(data);
+            $scope.category = $routeParams.category;
 
         }).
         error(function(data, status, headers, config) {
@@ -71,12 +68,12 @@ pennant.controller('ArticleController', function($scope, $http, $routeParams, ar
 
 pennant.factory('categoriesFactory', function($http){
     var categories = [
-        {id:1, name:"Editorials", image:'featured.png', advertisement:''},
-        {id:2, name:"Government", image:'government.png', advertisement:''},
-        {id:3, name:"About", image:'about.png', advertisement:''},
-        {id:4, name:"Sports", image:'sports.png', advertisement:''},
-        {id:5, name:"Arts", image:'art.png', advertisement:''},
-        {id:6, name:"Health and Beauty", image:'health_beauty.png', advertisement:''}
+        {id:1, name:"Editorials", image:'featured.png'},
+        {id:2, name:"Government", image:'government.png'},
+        {id:3, name:"About", image:'about.png'},
+        {id:4, name:"Sports", image:'sports.png'},
+        {id:5, name:"Arts", image:'art.png'},
+        {id:6, name:"Health and Beauty", image:'health_beauty.png'}
     ];
     var factory = {};
     factory.getCategories = function()
