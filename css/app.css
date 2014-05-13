@@ -65,3 +65,8 @@ background-image: -webkit-linear-gradient(top, #ffcc8a 0, #ffcc8a 100%);
     border: none;
     color: black;
 }
+
+.sqs-block-content p:first-child
+{
+    display:none;
+}

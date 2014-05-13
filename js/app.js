@@ -107,7 +107,7 @@ pennant.factory('articleFactory', function(){
     {
         console.log('here is my article!');
         article = articleJson.item;
-        console.log(article);
+        article.body = article.body.replace('data-src', 'src');
         return article
     };
     return factory;
