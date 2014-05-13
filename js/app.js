@@ -78,7 +78,7 @@ pennant.factory('categoriesFactory', function($http){
     var factory = {};
     factory.getCategories = function()
     {
-        return categories; //This is where we well API call out to Squarespace
+        return categories;
     };
     return factory;
 });
