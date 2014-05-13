@@ -1,13 +1,13 @@
 <header class="bar-title">
-    <a href="#" class="button-prev">Back</a>
+    <a href="#" class="button">Back</a>
     <h1 class="title">Pennant</h1>
 </header>
 
 <div class="content">
-    <ul class="list">
-        <div><img class="article_img" src="{{article.assetUrl}}"></div>
+    <div>
+        <img class="article_img" src="{{article.assetUrl}}">
         <p class="article-title">{{article.title}}</strong></p>
         <p class="author-name">{{article.author.displayName}}</p>
         <span ng-bind-html-unsafe="article.body"></span>
-    </ul>
+    </div>
 </div>
