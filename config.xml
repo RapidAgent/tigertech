@@ -36,6 +36,6 @@
 
     <preference name="phonegap-version" value="3.4.0" />
     <preference name="orientation" value="portrait" />
-
+    <preference name="UIWebViewBounce" value="false" />
     <access origin="*" subdomains="true"/>
 </widget>
