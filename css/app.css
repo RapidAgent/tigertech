@@ -61,5 +61,7 @@
 .bar-title [class*="button"] {
 background-image: -webkit-linear-gradient(top, #ffcc8a 0, #ffcc8a 100%);
     box-shadow: none;
+    text-shadow: none;
+    border: none;
     color: black;
 }
